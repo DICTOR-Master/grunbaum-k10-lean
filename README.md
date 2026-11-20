@@ -52,9 +52,62 @@ wrote the definitions, the statements, the generators and the proofs, and ran th
 `scripts/check-lean-sources.py` and `scripts/verify-comparator.sh` come from Palomar's entry template (PalomarRegistry).
 They check the source rules and run `lake comparator` the way Palomar does.
 
-## Licence
+## How to cite and reuse
 
-Apache-2.0 (see `LICENSE`). Copyright 2026 DICTO.
+### How to cite
+
+- **The paper.** DICTO, *Ten Faces in Every Zone: Grünbaum's Question at k = 10 — The DICTO Grünbaum–Escher
+  Triacontahedron (GET A and GET B)* (paper #115), Zenodo, 2026. DICTO DOI:
+  [10.5281/zenodo.24389006](https://doi.org/10.5281/zenodo.24389006) (all versions).
+- **The Palomar entry.** Submitted to Palomar (registration pending).
+- **The repository commit.** github.com/DICTOR-Master/grunbaum-k10-lean, commit
+  `a6b16c25d80fa90ea28259bad6a53d7e81d01779` (the commit submitted to Palomar). Later commits change only metadata and
+  documentation, not the Lean files.
+
+`CITATION.cff` holds the same data in machine-readable form (GitHub shows it under "Cite this repository").
+
+### What the library offers
+
+The four theorems of the Challenge are listed above (namespace `GrunbaumK10`). Their definitions (`Parallelogram`,
+`IsSphericalPolyhedron`, `IsRhombicMonohedral`, `zone`, `EveryZoneHas`, `lattice`, `TilesByTranslates`,
+`IsParallelohedron`, `FaceToFace`) are repeated word for word in `GET/Statement.lean`. The library `GET/` (namespace `GET`)
+contains:
+
+- The witness. `PB` (GET B as a union of 16 golden rhombohedra, `GET/Tiling.lean`), its faces `FB` (`GET/Faces.lean`)
+  and lattice basis `bB` (`GET/Tiling.lean`), with `PB_spherical`, `PB_tiles` and `FB_faceToFace` (`GET/Main.lean`),
+  `FB_zones` and `FB_golden` (`GET/Faces.lean`), `PB_cover` (`GET/Cover.lean`) and `PB_disjoint` (`GET/Tiling.lean`).
+- Exact arithmetic in ℤ[φ]. `ZPhi` with `+`, `-`, `*` and the evaluation `ZPhi.toReal`, which commutes with them
+  (`ZPhi.toReal_add`, `ZPhi.toReal_mul`, …); the exact sign test `ZPhi.pos`, with `ZPhi.pos_sound`
+  (`GET/ZPhi.lean`) and its converse `pos_complete` (`GET/Solid.lean`).
+- Zone certificates. `XPar` (a parallelogram with ℤ[φ] data), `ZoneClass`, `ZoneCert` and `everyZoneHas_of_cert`
+  (`GET/Zones.lean`): `EveryZoneHas` from a certificate decided by the kernel.
+- General lemmas. `segment_eq_segment_iff` (two segments are equal exactly when their endpoints agree, `GET/Zones.lean`);
+  `volume_vadd_parallelepiped` (`GET/CellVolume.lean`); `sphere_of_radial` (the frontier of a compact set, seen from an
+  interior point from which every ray meets the frontier at most once, is homeomorphic to the unit sphere,
+  `GET/Sphere.lean`).
+
+### How to import it
+
+The library builds with `leanprover/lean4:v4.35.0-rc2` and Mathlib `v4.35.0-rc2`; a project that requires it should use
+the same toolchain and Mathlib. In `lakefile.toml`:
+
+```toml
+[[require]]
+name = "GrunbaumK10"
+git = "https://github.com/DICTOR-Master/grunbaum-k10-lean.git"
+rev = "a6b16c25d80fa90ea28259bad6a53d7e81d01779"
+```
+
+Then import the modules you need, for example:
+
+```lean
+import GET.Main
+import GET.Zones
+```
+
+### Licence
+
+The Lean code: Apache-2.0 (see `LICENSE`). Copyright 2026 DICTO. The paper #115: CC BY-SA 4.0.
 
 ## Other work by DICTO
 

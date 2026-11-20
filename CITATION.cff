@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this library, please cite the paper below and the repository commit you used."
+type: software
+title: "Grünbaum's zone question at k = 10 (Lean 4 + Mathlib)"
+authors:
+  - name: "DICTO"
+    orcid: "https://orcid.org/0009-0001-2620-2036"
+repository-code: "https://github.com/DICTOR-Master/grunbaum-k10-lean"
+license: Apache-2.0
+preferred-citation:
+  type: article
+  status: preprint
+  title: "Ten Faces in Every Zone: Grünbaum's Question at k = 10 — The DICTO Grünbaum–Escher Triacontahedron (GET A and GET B)"
+  authors:
+    - name: "DICTO"
+      orcid: "https://orcid.org/0009-0001-2620-2036"
+  year: 2026
+  publisher:
+    name: "Zenodo"
+  doi: "10.5281/zenodo.24389006"
+  url: "https://doi.org/10.5281/zenodo.24389006"
